@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-display="newsreader">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -7,7 +7,7 @@
   <meta name="description" content="Branded consult and waitlist intake for private therapy practices. Start free for up to 5 consults a month." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,500;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
   <style>
     :root {
       --paper: #faf6f1;
@@ -30,7 +30,7 @@
       --shell: 76rem;
       --radius-lg: 1.15rem;
       --radius-md: .7rem;
-      --display: "Cormorant Garamond", Georgia, serif;
+      --display: "Newsreader", "Source Serif 4", Georgia, "Times New Roman", serif;
       --sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
       --shadow-card: 0 1px 2px rgba(42,37,33,.035), 0 10px 28px -16px rgba(42,37,33,.16);
       --shadow-lift: 0 2px 6px rgba(42,37,33,.045), 0 24px 48px -22px rgba(42,37,33,.22);
@@ -40,6 +40,23 @@
         0 8px 16px -8px rgba(42,37,33,.1),
         0 28px 56px -24px rgba(42,37,33,.22),
         0 0 0 1px rgba(42,37,33,.03);
+    }
+
+    html[data-display="newsreader"] { --display: "Newsreader", Georgia, "Times New Roman", serif; }
+    html[data-display="source-serif"] { --display: "Source Serif 4", Georgia, "Times New Roman", serif; }
+    .font-picker {
+      display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; align-items: center;
+      background: var(--paper-deep); border-bottom: 1px solid var(--line);
+      padding: .55rem 1rem; font-size: .78rem; color: var(--ink-soft);
+    }
+    .font-picker strong { font-weight: 500; color: var(--ink); margin-right: .25rem; }
+    .font-picker button {
+      appearance: none; border: 1px solid var(--line-strong); background: var(--paper-card);
+      border-radius: 999px; padding: .35rem .85rem; min-height: 36px; cursor: pointer;
+      font-family: var(--sans); font-size: .78rem; color: var(--ink-soft);
+    }
+    .font-picker button[aria-pressed="true"] {
+      border-color: var(--clay); background: var(--clay-soft); color: var(--clay-deep); font-weight: 500;
     }
     * { box-sizing: border-box; }
     html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; overflow-x: clip; }
@@ -248,6 +265,29 @@
       border-radius: 999px; background: var(--clay); color: var(--paper-card);
       font-size: .82rem; font-weight: 500;
       box-shadow: 0 1px 2px rgba(169,96,63,.15);
+    }
+
+    .mock-progress {
+      height: 3px; background: var(--line); border-radius: 999px; overflow: hidden;
+      margin: 0 1.35rem; margin-top: 1rem;
+    }
+    .mock-progress > span {
+      display: block; height: 100%; width: 28%;
+      background: var(--clay); border-radius: 999px;
+    }
+    .mock-back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .82rem; color: var(--ink-mute); margin-bottom: 1.15rem;
+    }
+    .mock-q {
+      margin: 0 0 1.15rem; font-family: var(--display); font-weight: 400;
+      font-size: 1.55rem; line-height: 1.25; color: var(--ink);
+    }
+    .mock-one .field { margin: 0; }
+    .mock-one .box.multi { min-height: 7.5rem; }
+    .mock-step {
+      font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink-mute); margin: .65rem 1.35rem 0;
     }
     .mock-foot {
       display: flex; align-items: center; justify-content: center; gap: .4rem;
@@ -481,7 +521,30 @@
       .feat-grid li { padding: 1.75rem; }
       .mock-head { padding: 1.05rem 1.4rem; }
       .mock-body { padding: 1.35rem 1.4rem 1.45rem; }
-      .mock-foot { padding: .7rem 1.4rem; }
+  
+    .mock-progress {
+      height: 3px; background: var(--line); border-radius: 999px; overflow: hidden;
+      margin: 0 1.35rem; margin-top: 1rem;
+    }
+    .mock-progress > span {
+      display: block; height: 100%; width: 28%;
+      background: var(--clay); border-radius: 999px;
+    }
+    .mock-back {
+      display: inline-flex; align-items: center; gap: .35rem;
+      font-size: .82rem; color: var(--ink-mute); margin-bottom: 1.15rem;
+    }
+    .mock-q {
+      margin: 0 0 1.15rem; font-family: var(--display); font-weight: 400;
+      font-size: 1.55rem; line-height: 1.25; color: var(--ink);
+    }
+    .mock-one .field { margin: 0; }
+    .mock-one .box.multi { min-height: 7.5rem; }
+    .mock-step {
+      font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink-mute); margin: .65rem 1.35rem 0;
+    }
+    .mock-foot { padding: .7rem 1.4rem; }
     }
 
     @media (min-width: 900px) {
@@ -534,6 +597,12 @@
 </head>
 <body>
   <div class="draft">Draft — editorial · V1 forest sage · not published</div>
+  <div class="font-picker" role="group" aria-label="Header font options">
+    <strong>Header font</strong>
+    <button type="button" data-display="newsreader" aria-pressed="true">A · Newsreader</button>
+    <button type="button" data-display="source-serif" aria-pressed="false">B · Source Serif 4</button>
+  </div>
+
 
   <header class="nav" id="nav">
     <div class="shell nav-inner">
@@ -577,7 +646,7 @@
       </div>
       <div class="mock-wrap" aria-hidden="true">
         <div class="mock-shadow"></div>
-        <div class="mock">
+        <div class="mock mock-one" aria-hidden="true">
           <div class="mock-head">
             <div class="mock-id">
               <span class="avatar">W</span>
@@ -586,24 +655,17 @@
                 <span>Request a consult</span>
               </div>
             </div>
-            <span class="pill">Accepting</span>
+            <span class="pill"><i></i>Accepting</span>
           </div>
+          <p class="mock-step">Step 3 of 9</p>
+          <div class="mock-progress" aria-hidden="true"><span></span></div>
           <div class="mock-body">
-            <div class="field"><label>Your name</label><div class="box">Marisol R.</div></div>
-            <div class="field"><label>Email</label><div class="box">marisol@example.com</div></div>
+            <button type="button" class="mock-back" tabindex="-1">← Back</button>
+            <h3 class="mock-q">What brings you in right now?</h3>
             <div class="field">
-              <label>What brings you in right now?</label>
               <div class="box multi">Looking for support with anxiety and a recent career change. Prefer someone who works with young professionals.</div>
             </div>
-            <div class="field">
-              <label>When can you usually meet?</label>
-              <div class="chips">
-                <span class="chip">Weekday mornings</span>
-                <span class="chip on">✓ Evenings after 5</span>
-                <span class="chip">Weekends</span>
-              </div>
-            </div>
-            <div class="mock-cta"><span>Send consult request</span></div>
+            <div class="mock-cta"><span>Continue</span></div>
           </div>
           <div class="mock-foot">
             <svg width="14" height="14" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
@@ -816,6 +878,16 @@
       mobile.hidden = true;
       btn.setAttribute('aria-expanded', 'false');
     }));
+
+    document.querySelectorAll('.font-picker button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const v = btn.getAttribute('data-display');
+        document.documentElement.setAttribute('data-display', v);
+        document.querySelectorAll('.font-picker button').forEach((b) => {
+          b.setAttribute('aria-pressed', String(b === btn));
+        });
+      });
+    });
   </script>
 </body>
 </html>
