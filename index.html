@@ -522,28 +522,6 @@
       .mock-head { padding: 1.05rem 1.4rem; }
       .mock-body { padding: 1.35rem 1.4rem 1.45rem; }
   
-    .mock-progress {
-      height: 3px; background: var(--line); border-radius: 999px; overflow: hidden;
-      margin: 0 1.35rem; margin-top: 1rem;
-    }
-    .mock-progress > span {
-      display: block; height: 100%; width: 28%;
-      background: var(--clay); border-radius: 999px;
-    }
-    .mock-back {
-      display: inline-flex; align-items: center; gap: .35rem;
-      font-size: .82rem; color: var(--ink-mute); margin-bottom: 1.15rem;
-    }
-    .mock-q {
-      margin: 0 0 1.15rem; font-family: var(--display); font-weight: 400;
-      font-size: 1.55rem; line-height: 1.25; color: var(--ink);
-    }
-    .mock-one .field { margin: 0; }
-    .mock-one .box.multi { min-height: 7.5rem; }
-    .mock-step {
-      font-size: .7rem; letter-spacing: .14em; text-transform: uppercase;
-      color: var(--ink-mute); margin: .65rem 1.35rem 0;
-    }
     .mock-foot { padding: .7rem 1.4rem; }
     }
 
@@ -593,6 +571,69 @@
       }
       .plan:hover, .plan.featured:hover { transform: none; }
     }
+
+    /* Sage woven through the system (secondary to clay) */
+    ::selection { background: color-mix(in srgb, var(--sage-soft) 70%, var(--clay-soft)); color: var(--ink); }
+    .draft {
+      background: color-mix(in srgb, var(--sage-soft) 55%, var(--paper-deep));
+      border-bottom-color: color-mix(in srgb, var(--sage-mist) 70%, var(--line));
+    }
+    .strip {
+      background: color-mix(in srgb, var(--sage-soft) 42%, var(--paper-deep));
+      border-block-color: color-mix(in srgb, var(--sage-mist) 65%, var(--line));
+    }
+    .strip-label { color: var(--sage-mid); }
+    .strip li + li::before {
+      background: color-mix(in srgb, var(--sage) 55%, var(--clay));
+    }
+    .features-band {
+      background: color-mix(in srgb, var(--sage-soft) 38%, var(--paper));
+      border-block-color: color-mix(in srgb, var(--sage-mist) 60%, var(--line));
+    }
+    .steps li::before {
+      background: color-mix(in srgb, var(--sage-mist) 80%, var(--line));
+    }
+    .step-num {
+      border-color: var(--sage-mid);
+      color: var(--sage-deep);
+      background: color-mix(in srgb, var(--sage-soft) 50%, white);
+    }
+    .steps li:nth-child(2) .step-num {
+      border-color: var(--clay);
+      color: var(--clay-deep);
+      background: color-mix(in srgb, var(--clay-soft) 55%, white);
+    }
+    .btn-outline:hover {
+      border-color: color-mix(in srgb, var(--sage) 45%, var(--line-strong));
+      background: color-mix(in srgb, var(--sage-soft) 35%, var(--paper-card));
+    }
+    footer {
+      border-top-color: color-mix(in srgb, var(--sage-mist) 55%, var(--line));
+      background: color-mix(in srgb, var(--sage-soft) 22%, var(--paper));
+    }
+    .footer-bottom {
+      border-top-color: color-mix(in srgb, var(--sage-mist) 70%, var(--line));
+    }
+    .plan:not(.featured) {
+      border-color: color-mix(in srgb, var(--sage-mist) 40%, var(--line));
+    }
+    .plan.featured {
+      box-shadow: var(--shadow-lift), 0 0 0 1px color-mix(in srgb, var(--clay) 25%, transparent);
+    }
+    header.nav.scrolled {
+      border-bottom-color: color-mix(in srgb, var(--sage-mist) 50%, var(--line));
+    }
+    .fine { color: color-mix(in srgb, var(--ink-mute) 85%, var(--sage-mid)); }
+    .mock-progress {
+      background: color-mix(in srgb, var(--sage-mist) 70%, var(--line));
+    }
+    .mock-back { color: var(--sage-mid); }
+    .mock-step { color: var(--sage-mid); }
+    .brand-mark circle[fill] { fill: var(--clay); }
+
+    .plan-sage-accent {
+      border-top: 3px solid color-mix(in srgb, var(--sage) 55%, var(--sage-mist));
+    }
   </style>
 </head>
 <body>
@@ -607,7 +648,7 @@
   <header class="nav" id="nav">
     <div class="shell nav-inner">
       <a class="brand" href="#top" aria-label="Circle home">
-        <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
+        <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#3e4e42" opacity=".92"/></svg>
         <span class="brand-name">Circle</span>
       </a>
       <nav class="nav-links" aria-label="Primary">
@@ -655,7 +696,7 @@
                 <span>Request a consult</span>
               </div>
             </div>
-            <span class="pill"><i></i>Accepting</span>
+            <span class="pill">Accepting</span>
           </div>
           <p class="mock-step">Step 3 of 9</p>
           <div class="mock-progress" aria-hidden="true"><span></span></div>
@@ -668,7 +709,7 @@
             <div class="mock-cta"><span>Continue</span></div>
           </div>
           <div class="mock-foot">
-            <svg width="14" height="14" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
+            <svg width="14" height="14" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#3e4e42" opacity=".92"/></svg>
             Powered by Circle
           </div>
         </div>
@@ -758,7 +799,7 @@
       <h2>Priced for a private practice, not a startup</h2>
       <p class="section-lede">Start free and stay free until your intake outgrows it. No setup fees, no per-client charges, cancel whenever.</p>
       <div class="pricing-grid">
-        <article class="plan">
+        <article class="plan plan-sage-accent">
           <h3>Free</h3>
           <p class="summary">For solo clinicians testing the waters.</p>
           <p class="price">$0 <span>/mo</span></p>
@@ -795,7 +836,7 @@
           </ul>
           <a class="btn btn-sage" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Growth%20plan">Choose Growth</a>
         </article>
-        <article class="plan">
+        <article class="plan plan-sage-accent">
           <h3>Group</h3>
           <p class="summary">For multi-clinician practices and clinics.</p>
           <div class="price-block">
@@ -830,7 +871,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="brand">
-            <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
+            <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#3e4e42" opacity=".92"/></svg>
             <span class="brand-name">Circle</span>
           </div>
           <p>Consult and waitlist intake for private therapy practices.</p>
