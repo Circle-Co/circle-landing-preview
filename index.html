@@ -15,7 +15,7 @@
       --paper-card: #fffdfa;
       --ink: #2a2521;
       --ink-soft: #5c534b;
-      --ink-mute: #8a7f75;
+      --ink-mute: #6f655c;
       --clay: #c4785a;
       --clay-deep: #a9603f;
       --clay-soft: #f0dfd5;
@@ -751,30 +751,6 @@
       overflow: hidden;
       isolation: isolate;
     }
-    .closing::before,
-    .closing::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      pointer-events: none;
-      z-index: -1;
-    }
-    .closing::before {
-      width: 22rem;
-      height: 22rem;
-      top: 50%;
-      left: 12%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, color-mix(in srgb, var(--clay) 22%, transparent) 0%, transparent 70%);
-    }
-    .closing::after {
-      width: 20rem;
-      height: 20rem;
-      top: 45%;
-      right: 8%;
-      transform: translate(30%, -40%);
-      background: radial-gradient(circle, color-mix(in srgb, #f4f1ec 8%, transparent) 0%, transparent 70%);
-    }
     .closing .shell { position: relative; }
     .closing .overline { color: color-mix(in srgb, var(--clay-soft) 90%, white); }
     .closing .overline::before { background: var(--clay); }
@@ -899,7 +875,7 @@
       .steps li { padding-top: 1.85rem; }
       .steps li::before { display: block; }
       .feat-grid { grid-template-columns: 1fr 1fr; margin-top: 3rem; }
-      section.block { padding: 4.75rem 0; }
+      section.block { padding: 4rem 0; }
       .closing { padding: 5.25rem 0; }
       .strip { padding: 1.85rem 0; }
       .pricing-grid { margin-top: 3rem; }
