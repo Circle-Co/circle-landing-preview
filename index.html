@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Circle — Consult &amp; waitlist intake for private practices</title>
+  <meta name="description" content="Branded consult and waitlist intake for private therapy practices. Start free for up to 5 consults a month." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --paper: #faf6f1;
+      --paper-deep: #f3ece4;
+      --paper-card: #fffdfa;
+      --ink: #2a2521;
+      --ink-soft: #5c534b;
+      --ink-mute: #8a7f75;
+      --clay: #c4785a;
+      --clay-deep: #a9603f;
+      --clay-soft: #f0dfd5;
+      --sage: #8b9c8a;
+      --sage-deep: #5f7060;
+      --sage-soft: #e7ece5;
+      --line: #e5dbd0;
+      --line-strong: #d6c8b9;
+      --shell: 76rem;
+      --radius-lg: 1.15rem;
+      --radius-md: .7rem;
+      --display: "Cormorant Garamond", Georgia, serif;
+      --sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+      --shadow-card: 0 1px 2px rgba(42,37,33,.035), 0 10px 28px -16px rgba(42,37,33,.16);
+      --shadow-lift: 0 2px 6px rgba(42,37,33,.045), 0 24px 48px -22px rgba(42,37,33,.22);
+      --shadow-hover: 0 4px 10px rgba(42,37,33,.05), 0 32px 56px -24px rgba(42,37,33,.26);
+      --shadow-mock:
+        0 1px 2px rgba(42,37,33,.04),
+        0 8px 16px -8px rgba(42,37,33,.1),
+        0 28px 56px -24px rgba(42,37,33,.22),
+        0 0 0 1px rgba(42,37,33,.03);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 5.5rem; overflow-x: clip; }
+    body {
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: var(--sans); -webkit-font-smoothing: antialiased;
+      line-height: 1.55; overflow-x: clip;
+    }
+    main, .closing { overflow-x: clip; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: var(--clay-soft); color: var(--ink); }
+    :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
+    .shell { width: min(var(--shell), calc(100% - 3rem)); margin-inline: auto; }
+    .draft {
+      background: color-mix(in srgb, var(--paper-deep) 70%, var(--clay-soft));
+      color: var(--ink-mute);
+      text-align: center; font-size: .72rem; font-weight: 500;
+      letter-spacing: .04em;
+      padding: .38rem 1rem; border-bottom: 1px solid color-mix(in srgb, var(--line) 80%, transparent);
+    }
+    /* Nav */
+    header.nav {
+      position: sticky; top: 0; z-index: 50;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color .25s ease, background .25s ease;
+    }
+    header.nav.scrolled { border-bottom-color: var(--line); }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 4.25rem; gap: 1.5rem; }
+    .brand { display: flex; align-items: center; gap: .65rem; }
+    .brand-mark { width: 1.75rem; height: 1.75rem; }
+    .brand-name { font-family: var(--display); font-size: 1.55rem; line-height: 1; }
+    .nav-links { display: flex; gap: 2.25rem; }
+    .nav-links a { font-size: .95rem; color: var(--ink-soft); transition: color .15s ease; }
+    .nav-links a:hover { color: var(--ink); }
+    .nav-actions { display: flex; align-items: center; gap: 1.5rem; }
+    .nav-actions .signin { font-size: .95rem; color: var(--ink-soft); transition: color .15s ease; }
+    .nav-actions .signin:hover { color: var(--ink); }
+    .menu-btn {
+      display: none; width: 2.5rem; height: 2.5rem; border: 0; background: transparent;
+      border-radius: 999px; align-items: center; justify-content: center; color: var(--ink);
+    }
+    .mobile { display: none; border-top: 1px solid var(--line); padding: 1rem 0 1.25rem; }
+    .mobile.open { display: block; }
+    .mobile a { display: block; padding: .85rem 0; border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent); color: var(--ink-soft); font-size: .95rem; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: .45rem;
+      height: 2.75rem; padding: 0 1.45rem; border-radius: 999px; font-size: .95rem; font-weight: 500;
+      border: 1px solid transparent;
+      transition: background .2s ease, border-color .2s ease, color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .btn .chev { width: .85rem; height: .85rem; flex-shrink: 0; }
+    .btn-clay { background: var(--clay); color: var(--paper-card); }
+    .btn-clay:hover { background: var(--clay-deep); }
+    .btn-outline { border-color: var(--line-strong); color: var(--ink); background: transparent; }
+    .btn-outline:hover { border-color: var(--ink-mute); background: color-mix(in srgb, var(--paper-card) 60%, transparent); }
+    .btn-lg { height: 3rem; padding: 0 1.65rem; }
+    .btn-block { width: 100%; }
+    /* Hero */
+    .hero {
+      position: relative;
+      display: grid; grid-template-columns: 1.05fr .95fr; gap: 4rem;
+      align-items: center; padding: 3.75rem 0 4.75rem;
+      isolation: isolate; overflow: hidden;
+    }
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      pointer-events: none;
+      z-index: -1;
+      border-radius: 50%;
+      filter: blur(2px);
+    }
+    .hero::before {
+      width: min(38rem, 90vw);
+      height: min(38rem, 90vw);
+      top: -12%;
+      left: -18%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--clay) 14%, transparent) 0%, transparent 68%);
+    }
+    .hero::after {
+      width: min(32rem, 80vw);
+      height: min(32rem, 80vw);
+      bottom: -8%;
+      right: -12%;
+      background: radial-gradient(circle, color-mix(in srgb, var(--sage) 16%, transparent) 0%, transparent 70%);
+    }
+    .overline {
+      display: inline-flex; align-items: center; gap: .55rem;
+      font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--clay-deep);
+      font-weight: 500;
+    }
+    .overline::before {
+      content: "";
+      width: .9rem; height: 1.5px;
+      background: var(--clay);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+    h1 {
+      margin: 1.05rem 0 0; font-family: var(--display); font-weight: 300;
+      font-size: clamp(2.75rem, 5vw, 4.35rem); line-height: 1.05; letter-spacing: -.015em;
+    }
+    h1 em { font-style: italic; color: var(--clay); }
+    .lede {
+      margin: 1.3rem 0 0; max-width: 30rem; font-size: 1.05rem; line-height: 1.7; color: var(--ink-soft);
+    }
+    .hero-cta { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .9rem; align-items: center; }
+    .fine { margin-top: 1.05rem; font-size: .82rem; color: var(--ink-mute); }
+    /* Intake mock */
+    .mock-wrap { position: relative; }
+    .mock-shadow {
+      position: absolute; inset: -.65rem -.65rem auto auto; width: 100%; height: 100%;
+      border-radius: var(--radius-lg);
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--clay-soft) 35%, transparent), color-mix(in srgb, var(--sage-soft) 40%, transparent));
+      opacity: .7;
+      display: none;
+    }
+    @media (min-width: 1024px) { .mock-shadow { display: block; } }
+    .mock {
+      position: relative; overflow: hidden; border-radius: var(--radius-lg);
+      border: 1px solid color-mix(in srgb, var(--line) 85%, var(--ink-mute));
+      background: var(--paper-card);
+      box-shadow: var(--shadow-mock);
+    }
+    .mock-head {
+      display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+      padding: 1.05rem 1.4rem; border-bottom: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 45%, var(--paper-card));
+    }
+    .mock-id { display: flex; align-items: center; gap: .75rem; }
+    .avatar {
+      width: 2.05rem; height: 2.05rem; border-radius: 999px; background: var(--sage-soft);
+      color: var(--sage-deep); font-family: var(--display); font-size: 1.05rem;
+      display: grid; place-items: center;
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sage) 22%, transparent);
+    }
+    .mock-id strong { display: block; font-size: .82rem; font-weight: 500; line-height: 1.2; }
+    .mock-id span { display: block; font-size: .72rem; color: var(--ink-mute); line-height: 1.25; margin-top: .1rem; }
+    .pill {
+      display: inline-flex; align-items: center; gap: .35rem;
+      border-radius: 999px;
+      background: color-mix(in srgb, var(--sage-soft) 85%, white);
+      color: var(--sage-deep);
+      font-size: .68rem; font-weight: 500; letter-spacing: .02em;
+      padding: .28rem .7rem;
+      border: 1px solid color-mix(in srgb, var(--sage) 22%, transparent);
+    }
+    .pill::before {
+      content: "";
+      width: .38rem; height: .38rem; border-radius: 999px;
+      background: var(--sage-deep);
+      box-shadow: 0 0 0 2px color-mix(in srgb, var(--sage) 25%, transparent);
+    }
+    .mock-body { padding: 1.35rem 1.4rem 1.45rem; display: grid; gap: 1rem; }
+    .field label {
+      display: block; margin-bottom: .4rem;
+      font-size: .72rem; font-weight: 500; letter-spacing: .01em; color: var(--ink-soft);
+    }
+    .field .box {
+      border: 1px solid color-mix(in srgb, var(--line) 90%, var(--ink-mute));
+      border-radius: var(--radius-md);
+      background: color-mix(in srgb, var(--paper) 55%, var(--paper-card));
+      padding: .6rem .85rem; font-size: .82rem; color: var(--ink);
+    }
+    .field .box.multi { line-height: 1.55; color: var(--ink-soft); min-height: 4rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .45rem; }
+    .chip {
+      display: inline-flex; align-items: center; gap: .3rem;
+      border: 1px solid var(--line); border-radius: 999px; padding: .38rem .7rem;
+      font-size: .72rem; color: var(--ink-mute); background: var(--paper-card);
+    }
+    .chip.on {
+      border-color: color-mix(in srgb, var(--clay) 55%, var(--line));
+      background: color-mix(in srgb, var(--clay-soft) 80%, white);
+      color: var(--clay-deep);
+    }
+    .mock-cta {
+      margin-top: .15rem; padding-top: 1.05rem; border-top: 1px dashed var(--line);
+    }
+    .mock-cta span {
+      display: flex; height: 2.45rem; align-items: center; justify-content: center;
+      border-radius: 999px; background: var(--clay); color: var(--paper-card);
+      font-size: .82rem; font-weight: 500;
+      box-shadow: 0 1px 2px rgba(169,96,63,.15);
+    }
+    .mock-foot {
+      display: flex; align-items: center; justify-content: center; gap: .4rem;
+      border-top: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper) 80%, var(--paper-deep));
+      padding: .7rem 1.4rem;
+      font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute);
+    }
+    /* Practice strip */
+    .strip {
+      border-block: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper-deep) 45%, transparent);
+      padding: 1.85rem 0;
+    }
+    .strip-inner { display: flex; flex-wrap: wrap; align-items: center; gap: 1.25rem 2.5rem; }
+    .strip-label { flex-shrink: 0; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); }
+    .strip ul {
+      list-style: none; margin: 0; padding: 0;
+      display: flex; flex-wrap: wrap; align-items: center; gap: .65rem 0;
+    }
+    .strip li {
+      font-family: var(--display); font-size: 1.28rem; line-height: 1.1; color: var(--ink-soft);
+      display: inline-flex; align-items: center;
+    }
+    .strip li:not(:last-child)::after {
+      content: "";
+      display: inline-block;
+      width: 3px; height: 3px; border-radius: 999px;
+      background: color-mix(in srgb, var(--clay) 45%, var(--ink-mute));
+      margin-inline: 1.15rem;
+      vertical-align: middle;
+      opacity: .7;
+    }
+    /* Sections */
+    section.block { padding: 4.75rem 0; }
+    h2 {
+      margin: .9rem 0 0; font-family: var(--display); font-weight: 300;
+      font-size: clamp(2rem, 3.3vw, 2.9rem); line-height: 1.12;
+    }
+    .section-lede { margin: .95rem 0 0; max-width: 36rem; font-size: 1rem; line-height: 1.7; color: var(--ink-soft); }
+    /* How */
+    .steps {
+      list-style: none; margin: 3rem 0 0; padding: 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.25rem 3.25rem;
+    }
+    .steps li { position: relative; padding-top: 1.85rem; }
+    .steps li::before {
+      content: ""; position: absolute; left: 0; top: 0; height: 1px; width: 100%; background: var(--line);
+    }
+    .step-meta { display: flex; align-items: center; gap: .7rem; }
+    .step-num {
+      width: 1.7rem; height: 1.7rem; border-radius: 999px; border: 1px solid var(--clay);
+      color: var(--clay-deep); font-size: .72rem; font-weight: 500;
+      display: grid; place-items: center;
+    }
+    .step-label { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-mute); }
+    .steps h3 { margin: 1.05rem 0 0; font-family: var(--display); font-size: 1.45rem; font-weight: 400; line-height: 1.25; }
+    .steps p { margin: .7rem 0 0; font-size: .95rem; line-height: 1.7; color: var(--ink-soft); }
+    /* Features */
+    .features-band { border-block: 1px solid var(--line); background: color-mix(in srgb, var(--paper-deep) 35%, transparent); }
+    .features-head {
+      display: flex; flex-wrap: wrap; gap: 1.5rem; justify-content: space-between; align-items: end;
+    }
+    .features-head .aside { max-width: 22rem; font-size: .95rem; line-height: 1.7; color: var(--ink-soft); margin: 0; }
+    .feat-grid {
+      list-style: none; margin: 3rem 0 0; padding: 0;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
+      border: 1px solid var(--line); border-radius: var(--radius-lg); overflow: hidden; background: var(--line);
+    }
+    .feat-grid li { background: var(--paper-card); padding: 1.75rem; }
+    .feat-icon {
+      width: 2.5rem; height: 2.5rem; border-radius: 999px;
+      display: grid; place-items: center;
+    }
+    .feat-grid li:nth-child(odd) .feat-icon {
+      background: color-mix(in srgb, var(--clay-soft) 75%, white);
+      color: var(--clay-deep);
+    }
+    .feat-grid li:nth-child(even) .feat-icon {
+      background: color-mix(in srgb, var(--sage-soft) 80%, white);
+      color: var(--sage-deep);
+    }
+    .feat-icon svg { width: 1.15rem; height: 1.15rem; stroke-width: 1.6; }
+    .feat-grid h3 { margin: 1.05rem 0 0; font-family: var(--display); font-size: 1.3rem; font-weight: 400; line-height: 1.25; }
+    .feat-grid p { margin: .55rem 0 0; font-size: .95rem; line-height: 1.7; color: var(--ink-soft); }
+    /* Pricing */
+    .pricing-grid {
+      margin-top: 3rem; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; align-items: stretch;
+    }
+    .plan {
+      position: relative; display: flex; flex-direction: column;
+      background: var(--paper-card); border: 1px solid var(--line); border-radius: var(--radius-lg);
+      padding: 1.6rem; box-shadow: var(--shadow-card); min-height: 100%;
+      transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    }
+    .plan:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-hover);
+      border-color: color-mix(in srgb, var(--line-strong) 70%, var(--clay));
+    }
+    .plan.featured {
+      border-color: color-mix(in srgb, var(--clay) 70%, var(--line));
+      box-shadow: var(--shadow-lift);
+      background: color-mix(in srgb, var(--paper-card) 92%, var(--clay-soft));
+    }
+    .plan.featured:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-hover);
+    }
+    .badge {
+      position: absolute; top: -.7rem; left: 1.5rem;
+      background: var(--clay); color: var(--paper-card);
+      font-size: .68rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase;
+      padding: .26rem .7rem; border-radius: 999px;
+      box-shadow: 0 2px 8px -2px rgba(169,96,63,.35);
+    }
+    .plan h3 { margin: 0; font-family: var(--display); font-size: 1.45rem; font-weight: 400; line-height: 1; }
+    .plan .summary { margin: .5rem 0 0; min-height: 2.6rem; font-size: .875rem; line-height: 1.55; color: var(--ink-mute); }
+    .price {
+      margin-top: 1.05rem; font-family: var(--display); font-weight: 300;
+      font-size: 2.65rem; line-height: 1; color: var(--ink);
+    }
+    .price span { font-family: var(--sans); font-size: .875rem; color: var(--ink-mute); font-weight: 400; }
+    .price-block {
+      margin-top: 1.05rem;
+      display: flex; flex-direction: column; gap: .15rem;
+      min-height: 3.2rem; justify-content: center;
+    }
+    .price-block .lead {
+      font-family: var(--display); font-weight: 300;
+      font-size: 1.85rem; line-height: 1.1; color: var(--ink);
+    }
+    .price-block .sub {
+      font-size: .82rem; color: var(--ink-mute); letter-spacing: .01em;
+    }
+    .plan ul {
+      list-style: none; margin: 1.25rem 0 0; padding: 1.25rem 0 0;
+      border-top: 1px dashed var(--line); flex: 1;
+    }
+    .plan li {
+      display: grid; grid-template-columns: 1rem 1fr; gap: .6rem;
+      font-size: .875rem; line-height: 1.55; color: var(--ink-soft); padding: .28rem 0;
+    }
+    .plan li .tick { color: var(--sage-deep); font-weight: 700; }
+    .plan .btn { margin-top: 1.6rem; }
+    /* Closing */
+    .closing {
+      position: relative;
+      border-top: 1px solid var(--line);
+      background: color-mix(in srgb, var(--paper-deep) 42%, transparent);
+      text-align: center; padding: 5.25rem 0;
+      overflow: hidden; isolation: isolate;
+    }
+    .closing::before,
+    .closing::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .closing::before {
+      width: 22rem; height: 22rem;
+      top: 50%; left: 12%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--clay) 11%, transparent) 0%, transparent 70%);
+    }
+    .closing::after {
+      width: 20rem; height: 20rem;
+      top: 45%; right: 8%;
+      transform: translate(30%, -40%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--sage) 13%, transparent) 0%, transparent 70%);
+    }
+    .closing .shell { position: relative; }
+    .closing h2 { margin: 0 auto; max-width: 20ch; font-size: clamp(2.1rem, 3.6vw, 3rem); }
+    .closing p { margin: 1.1rem auto 0; max-width: 30rem; font-size: 1.02rem; line-height: 1.7; color: var(--ink-soft); }
+    .closing-actions { margin-top: 2rem; display: flex; flex-wrap: wrap; gap: .9rem; justify-content: center; }
+    /* Footer */
+    footer { border-top: 1px solid var(--line); padding: 3rem 0; }
+    .footer-grid { display: flex; flex-wrap: wrap; gap: 2.5rem; justify-content: space-between; }
+    .footer-brand p { margin: 1rem 0 0; max-width: 18rem; font-size: .875rem; line-height: 1.7; color: var(--ink-mute); }
+    .footer-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem 4rem; }
+    .footer-cols h2 { margin: 0; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-mute); font-family: var(--sans); font-weight: 500; }
+    .footer-cols ul { list-style: none; margin: 1rem 0 0; padding: 0; }
+    .footer-cols li { margin: .6rem 0; }
+    .footer-cols a { font-size: .875rem; color: var(--ink-soft); transition: color .15s ease; }
+    .footer-cols a:hover { color: var(--ink); }
+    .footer-bottom {
+      margin-top: 2.5rem; padding-top: 1.25rem; border-top: 1px dashed var(--line);
+      display: flex; flex-wrap: wrap; gap: .75rem; justify-content: space-between;
+      font-size: .82rem; color: var(--ink-mute);
+    }
+    @media (max-width: 1100px) {
+      .pricing-grid { grid-template-columns: 1fr 1fr; }
+      .feat-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .nav-links, .nav-actions { display: none; }
+      .menu-btn { display: inline-flex; }
+      .hero, .steps { grid-template-columns: 1fr; gap: 2.5rem; }
+      .steps li { padding-top: 0; }
+      .steps li::before { display: none; }
+      .feat-grid { grid-template-columns: 1fr; }
+      .hero { padding: 2.75rem 0 3.25rem; }
+      .hero::before { top: -6%; left: -30%; opacity: .85; }
+      .hero::after { bottom: 35%; right: -25%; opacity: .75; }
+      section.block, .closing { padding: 3.5rem 0; }
+      .strip li:not(:last-child)::after { margin-inline: .85rem; }
+    }
+    @media (max-width: 560px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+      .shell { width: min(var(--shell), calc(100% - 2rem)); }
+      .footer-cols { gap: 2rem; }
+      .plan:hover, .plan.featured:hover { transform: translateY(-2px); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+      .plan:hover, .plan.featured:hover { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="draft">Draft — not published yet</div>
+
+  <header class="nav" id="nav">
+    <div class="shell nav-inner">
+      <a class="brand" href="#top" aria-label="Circle home">
+        <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
+        <span class="brand-name">Circle</span>
+      </a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#how-it-works">How it works</a>
+        <a href="#features">Features</a>
+        <a href="#pricing">Pricing</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="signin" href="https://app.hellocircleco.com">Sign in</a>
+        <a class="btn btn-clay" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Start%20free">Start free</a>
+      </div>
+      <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mobile" aria-label="Open menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+    <div class="shell mobile" id="mobile" hidden>
+      <a href="#how-it-works">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="https://app.hellocircleco.com">Sign in</a>
+      <a class="btn btn-clay btn-block" style="margin-top:1rem" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Start%20free">Start free</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="shell hero" id="top">
+      <div>
+        <p class="overline">For private therapy practices</p>
+        <h1>Consult requests,<br /><em>gathered in one calm place.</em></h1>
+        <p class="lede">Circle gives your practice a branded intake page and a simple inbox for consult requests and waitlist clients — so new clients stop getting lost between voicemails, contact forms, and sticky notes.</p>
+        <div class="hero-cta">
+          <a class="btn btn-clay btn-lg" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Start%20free">Start free<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></a>
+          <a class="btn btn-outline btn-lg" href="#how-it-works">See how it works</a>
+        </div>
+        <p class="fine">Free for up to 5 consult requests a month. Paid plans start at $10.</p>
+      </div>
+      <div class="mock-wrap" aria-hidden="true">
+        <div class="mock-shadow"></div>
+        <div class="mock">
+          <div class="mock-head">
+            <div class="mock-id">
+              <span class="avatar">W</span>
+              <div>
+                <strong>Wildflower Counseling ATX</strong>
+                <span>Request a consult</span>
+              </div>
+            </div>
+            <span class="pill">Accepting</span>
+          </div>
+          <div class="mock-body">
+            <div class="field"><label>Your name</label><div class="box">Marisol R.</div></div>
+            <div class="field"><label>Email</label><div class="box">marisol@example.com</div></div>
+            <div class="field">
+              <label>What brings you in right now?</label>
+              <div class="box multi">Looking for support with anxiety and a recent career change. Prefer someone who works with young professionals.</div>
+            </div>
+            <div class="field">
+              <label>When can you usually meet?</label>
+              <div class="chips">
+                <span class="chip">Weekday mornings</span>
+                <span class="chip on">✓ Evenings after 5</span>
+                <span class="chip">Weekends</span>
+              </div>
+            </div>
+            <div class="mock-cta"><span>Send consult request</span></div>
+          </div>
+          <div class="mock-foot">
+            <svg width="14" height="14" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
+            Powered by Circle
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="strip">
+      <div class="shell strip-inner">
+        <p class="strip-label">In use at</p>
+        <ul>
+          <li>Burning River Counseling</li>
+          <li>Wildflower Counseling ATX</li>
+          <li>For the Love of Therapy</li>
+          <li>Theresa Leal, LPC</li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="shell block" id="how-it-works">
+      <p class="overline">How it works</p>
+      <h2>Up and running in an afternoon</h2>
+      <ol class="steps">
+        <li>
+          <div class="step-meta"><span class="step-num">1</span><span class="step-label">Set up</span></div>
+          <h3>Build your intake form</h3>
+          <p>Answer a few questions about your practice and Circle generates a consult request form in your colors, with your language. No site rebuild, no developer.</p>
+        </li>
+        <li>
+          <div class="step-meta"><span class="step-num">2</span><span class="step-label">Share</span></div>
+          <h3>Add the link to your site</h3>
+          <p>Drop your Circle link on your website, directory profile, or email signature. Clients see one calm page instead of a phone number and a hope.</p>
+        </li>
+        <li>
+          <div class="step-meta"><span class="step-num">3</span><span class="step-label">Respond</span></div>
+          <h3>Review requests in one place</h3>
+          <p>Every consult request lands in a tidy inbox with the details you asked for — fit, insurance, availability — so you can reply or waitlist in a minute.</p>
+        </li>
+      </ol>
+    </section>
+
+    <section class="features-band block" id="features">
+      <div class="shell">
+        <div class="features-head">
+          <div>
+            <p class="overline">What you get</p>
+            <h2>Small tools that quietly hold the front door</h2>
+          </div>
+          <p class="aside">No directory listings, no lead marketplace. Circle only handles the people already trying to reach you.</p>
+        </div>
+        <ul class="feat-grid">
+          <li>
+            <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5H7a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/><rect x="9" y="3" width="6" height="4" rx="1"/><path d="M9 12h6M9 16h4"/></svg></span>
+            <h3>Custom consult questions</h3>
+            <p>Ask what actually determines fit — modality, insurance, session times — and stop trading six emails before the first call.</p>
+          </li>
+          <li>
+            <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H5.17L4 17.17V4z"/><path d="M8 8h8M8 12h5"/></svg></span>
+            <h3>One organized inbox</h3>
+            <p>New, replied, waitlisted. Every request keeps its status so nothing quietly falls through.</p>
+          </li>
+          <li>
+            <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/><path d="m9 16 2 2 4-4"/></svg></span>
+            <h3>Waitlist that stays warm</h3>
+            <p>Hold clients you cannot see yet, then reach back out the moment a slot opens — without digging through your inbox.</p>
+          </li>
+          <li>
+            <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="6.5" r="2.5"/><path d="M20 21v-2a4 4 0 0 0-3-3.87"/><path d="M4 21v-2a4 4 0 0 1 3-3.87"/><path d="M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <h3>Branding that matches you</h3>
+            <p>Your logo, palette, and voice on the intake page. It reads like part of your practice, not a third-party form.</p>
+          </li>
+          <li>
+            <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+            <h3>Private by default</h3>
+            <p>Encrypted in transit and at rest, minimal data collection, and no client information sold or shared. Ever.</p>
+          </li>
+          <li>
+            <span class="feat-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3"/><path d="M2 14h4M10 8h4M18 16h4"/></svg></span>
+            <h3>Availability controls</h3>
+            <p>Pause intake when you are full, cap requests per week, and turn the form back on when you have room again.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="shell block" id="pricing">
+      <p class="overline">Pricing</p>
+      <h2>Priced for a private practice, not a startup</h2>
+      <p class="section-lede">Start free and stay free until your intake outgrows it. No setup fees, no per-client charges, cancel whenever.</p>
+      <div class="pricing-grid">
+        <article class="plan">
+          <h3>Free</h3>
+          <p class="summary">For solo clinicians testing the waters.</p>
+          <p class="price">$0 <span>/mo</span></p>
+          <ul>
+            <li><span class="tick">✓</span><span>Up to 5 consult requests / mo</span></li>
+            <li><span class="tick">✓</span><span>Hosted intake page</span></li>
+            <li><span class="tick">✓</span><span>Standard question set</span></li>
+            <li><span class="tick">✓</span><span>Email notifications</span></li>
+          </ul>
+          <a class="btn btn-outline" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Free%20plan">Start free</a>
+        </article>
+        <article class="plan featured">
+          <span class="badge">Popular</span>
+          <h3>Practice</h3>
+          <p class="summary">The everyday plan for a full private practice.</p>
+          <p class="price">$10 <span>/mo</span></p>
+          <ul>
+            <li><span class="tick">✓</span><span>Unlimited consult requests</span></li>
+            <li><span class="tick">✓</span><span>Deeper branding controls</span></li>
+            <li><span class="tick">✓</span><span>Custom intake questions</span></li>
+            <li><span class="tick">✓</span><span>Human setup help</span></li>
+          </ul>
+          <a class="btn btn-clay" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Practice%20plan">Choose Practice</a>
+        </article>
+        <article class="plan">
+          <h3>Growth</h3>
+          <p class="summary">For practices with a steady referral flow.</p>
+          <p class="price">$25 <span>/mo</span></p>
+          <ul>
+            <li><span class="tick">✓</span><span>Everything in Practice</span></li>
+            <li><span class="tick">✓</span><span>Calendar integrations</span></li>
+            <li><span class="tick">✓</span><span>Advanced customizations</span></li>
+            <li><span class="tick">✓</span><span>Priority support</span></li>
+          </ul>
+          <a class="btn btn-outline" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Growth%20plan">Choose Growth</a>
+        </article>
+        <article class="plan">
+          <h3>Group</h3>
+          <p class="summary">For multi-clinician practices and clinics.</p>
+          <div class="price-block">
+            <span class="lead">Contact us</span>
+            <span class="sub">for pricing</span>
+          </div>
+          <ul>
+            <li><span class="tick">✓</span><span>Multi-clinician shared portal</span></li>
+            <li><span class="tick">✓</span><span>Route requests by clinician</span></li>
+            <li><span class="tick">✓</span><span>Shared waitlist visibility</span></li>
+            <li><span class="tick">✓</span><span>Onboarding for your team</span></li>
+          </ul>
+          <a class="btn btn-outline" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Group%20pricing">Talk to us</a>
+        </article>
+      </div>
+    </section>
+
+    <section class="closing">
+      <div class="shell">
+        <h2>Give new clients one clear way in.</h2>
+        <p>Set up your intake page today, keep the free plan as long as it fits, and upgrade only when your practice fills up.</p>
+        <div class="closing-actions">
+          <a class="btn btn-clay btn-lg" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Start%20free">Start free<svg class="chev" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5 10.5 8 6 12.5"/></svg></a>
+          <a class="btn btn-outline btn-lg" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Question">Ask us a question</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <svg class="brand-mark" viewBox="0 0 28 28" aria-hidden="true"><circle cx="14" cy="14" r="12.25" fill="none" stroke="#c4785a" stroke-width="1.5"/><circle cx="14" cy="14" r="5" fill="#c4785a" opacity=".9"/></svg>
+            <span class="brand-name">Circle</span>
+          </div>
+          <p>Consult and waitlist intake for private therapy practices.</p>
+        </div>
+        <div class="footer-cols">
+          <nav aria-label="Product">
+            <h2>Product</h2>
+            <ul>
+              <li><a href="#how-it-works">How it works</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#pricing">Pricing</a></li>
+            </ul>
+          </nav>
+          <nav aria-label="Company">
+            <h2>Company</h2>
+            <ul>
+              <li><a href="https://app.hellocircleco.com">Sign in</a></li>
+              <li><a href="mailto:support@hellocircleco.com">support@hellocircleco.com</a></li>
+              <li><a href="https://app.hellocircleco.com">app.hellocircleco.com</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 E&amp;X Innovations Inc. All rights reserved.</p>
+        <p>Built for clinicians, in Ohio and Texas.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const nav = document.getElementById('nav');
+    const btn = document.getElementById('menuBtn');
+    const mobile = document.getElementById('mobile');
+    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    btn?.addEventListener('click', () => {
+      const open = mobile.classList.toggle('open');
+      mobile.hidden = !open;
+      btn.setAttribute('aria-expanded', String(open));
+    });
+    mobile?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => {
+      mobile.classList.remove('open');
+      mobile.hidden = true;
+      btn.setAttribute('aria-expanded', 'false');
+    }));
+  </script>
+</body>
+</html>
