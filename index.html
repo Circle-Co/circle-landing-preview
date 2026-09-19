@@ -19,7 +19,7 @@
       --clay: #c4785a;
       --clay-deep: #a9603f;
       --clay-soft: #f0dfd5;
-      /* Sole sage in the palette — soft washes via color-mix with paper */
+      /* Deep sage: intentional accents only (closing band, btn-sage, mark, progress, pill, steps) */
       --sage-deep: #3e4e42;
       --line: #e5dbd0;
       --line-strong: #d6c8b9;
@@ -52,7 +52,7 @@
     main, .closing { overflow-x: clip; }
     a { color: inherit; text-decoration: none; }
     ::selection {
-      background: color-mix(in srgb, var(--sage-deep) 12%, var(--clay-soft));
+      background: var(--clay-soft);
       color: var(--ink);
     }
     :focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; }
@@ -60,14 +60,14 @@
     .shell { width: min(var(--shell), calc(100% - 2rem)); margin-inline: auto; }
 
     .draft {
-      background: color-mix(in srgb, var(--sage-deep) 8%, var(--paper-deep));
+      background: var(--paper-deep);
       color: var(--ink-mute);
       text-align: center;
       font-size: .72rem;
       font-weight: 500;
       letter-spacing: .04em;
       padding: .38rem 1rem;
-      border-bottom: 1px solid color-mix(in srgb, var(--sage-deep) 14%, var(--line));
+      border-bottom: 1px solid var(--line);
     }
 
     /* —— Nav —— */
@@ -81,7 +81,7 @@
       transition: border-color .25s ease, background .25s ease;
     }
     header.nav.scrolled {
-      border-bottom-color: color-mix(in srgb, var(--sage-deep) 18%, var(--line));
+      border-bottom-color: var(--line);
     }
     .nav-inner {
       display: flex;
@@ -98,7 +98,7 @@
       font-family: var(--display);
       font-size: 1.55rem;
       line-height: 1;
-      font-weight: 400;
+      font-weight: 500;
     }
     .nav-links { display: none; gap: 2.25rem; }
     .nav-links a {
@@ -129,7 +129,7 @@
     }
     .mobile {
       display: none;
-      border-top: 1px solid color-mix(in srgb, var(--sage-deep) 12%, var(--line));
+      border-top: 1px solid var(--line);
       padding: 1rem 0 1.25rem;
     }
     .mobile.open { display: block; }
@@ -138,7 +138,7 @@
       align-items: center;
       min-height: 44px;
       padding: .85rem 0;
-      border-bottom: 1px solid color-mix(in srgb, var(--sage-deep) 10%, var(--line));
+      border-bottom: 1px solid var(--line);
       color: var(--ink-soft);
       font-size: .95rem;
     }
@@ -169,8 +169,8 @@
       background: transparent;
     }
     .btn-outline:hover {
-      border-color: color-mix(in srgb, var(--sage-deep) 35%, var(--line-strong));
-      background: color-mix(in srgb, var(--sage-deep) 6%, var(--paper-card));
+      border-color: color-mix(in srgb, var(--clay) 40%, var(--line-strong));
+      background: color-mix(in srgb, var(--clay-soft) 45%, var(--paper-card));
     }
     .btn-lg { min-height: 48px; padding: .8rem 1.65rem; }
     .btn-block { width: 100%; }
@@ -209,7 +209,7 @@
       bottom: 35%;
       right: -25%;
       opacity: .8;
-      background: radial-gradient(circle, color-mix(in srgb, var(--sage-deep) 12%, transparent) 0%, transparent 70%);
+      background: radial-gradient(circle, color-mix(in srgb, var(--clay-soft) 55%, transparent) 0%, transparent 70%);
     }
     .overline {
       display: inline-flex;
@@ -232,7 +232,7 @@
     h1 {
       margin: 1.05rem 0 0;
       font-family: var(--display);
-      font-weight: 300;
+      font-weight: 400;
       font-size: clamp(2.35rem, 8vw, 4.35rem);
       line-height: 1.05;
       letter-spacing: -.015em;
@@ -255,7 +255,7 @@
     .fine {
       margin-top: 1.05rem;
       font-size: .82rem;
-      color: color-mix(in srgb, var(--ink-mute) 80%, var(--sage-deep));
+      color: var(--ink-mute);
     }
 
     /* —— One-question intake mock —— */
@@ -269,7 +269,7 @@
       background: linear-gradient(
         145deg,
         color-mix(in srgb, var(--clay-soft) 35%, transparent),
-        color-mix(in srgb, var(--sage-deep) 10%, var(--paper))
+        color-mix(in srgb, var(--paper-deep) 80%, var(--paper))
       );
       opacity: .7;
       display: none;
@@ -278,7 +278,7 @@
       position: relative;
       overflow: hidden;
       border-radius: var(--radius-lg);
-      border: 1px solid color-mix(in srgb, var(--sage-deep) 12%, var(--line));
+      border: 1px solid var(--line);
       background: var(--paper-card);
       box-shadow: var(--shadow-mock);
     }
@@ -288,22 +288,22 @@
       align-items: center;
       gap: 1rem;
       padding: 1.05rem 1.15rem;
-      border-bottom: 1px solid color-mix(in srgb, var(--sage-deep) 10%, var(--line));
-      background: color-mix(in srgb, var(--sage-deep) 4%, var(--paper-card));
+      border-bottom: 1px solid var(--line);
+      background: var(--paper);
     }
     .mock-id { display: flex; align-items: center; gap: .75rem; min-width: 0; }
     .avatar {
       width: 2.05rem;
       height: 2.05rem;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--sage-deep) 12%, var(--paper));
-      color: var(--sage-deep);
+      background: color-mix(in srgb, var(--clay-soft) 70%, white);
+      color: var(--clay-deep);
       font-family: var(--display);
       font-size: 1.05rem;
       display: grid;
       place-items: center;
       flex-shrink: 0;
-      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--sage-deep) 22%, transparent);
+      box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--clay) 22%, transparent);
     }
     .mock-id strong {
       display: block;
@@ -323,13 +323,13 @@
       align-items: center;
       gap: .35rem;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--sage-deep) 10%, var(--paper-card));
+      background: var(--paper);
       color: var(--sage-deep);
       font-size: .68rem;
       font-weight: 500;
       letter-spacing: .02em;
       padding: .28rem .7rem;
-      border: 1px solid color-mix(in srgb, var(--sage-deep) 22%, transparent);
+      border: 1px solid var(--line-strong);
       flex-shrink: 0;
     }
     .pill::before {
@@ -338,18 +338,17 @@
       height: .38rem;
       border-radius: 999px;
       background: var(--sage-deep);
-      box-shadow: 0 0 0 2px color-mix(in srgb, var(--sage-deep) 20%, transparent);
     }
     .mock-step {
       font-size: .7rem;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--sage-deep) 70%, var(--ink-mute));
+      color: var(--ink-mute);
       margin: .65rem 1.35rem 0;
     }
     .mock-progress {
       height: 3px;
-      background: color-mix(in srgb, var(--sage-deep) 14%, var(--line));
+      background: var(--line);
       border-radius: 999px;
       overflow: hidden;
       margin: .55rem 1.35rem 0;
@@ -372,14 +371,14 @@
       padding: 0;
       font-family: var(--sans);
       font-size: .82rem;
-      color: color-mix(in srgb, var(--sage-deep) 75%, var(--ink-mute));
+      color: var(--ink-mute);
       margin-bottom: 1.15rem;
       cursor: default;
     }
     .mock-q {
       margin: 0 0 1.15rem;
       font-family: var(--display);
-      font-weight: 400;
+      font-weight: 500;
       font-size: 1.55rem;
       line-height: 1.25;
       color: var(--ink);
@@ -393,9 +392,9 @@
       color: var(--ink-soft);
     }
     .field .box {
-      border: 1px solid color-mix(in srgb, var(--sage-deep) 10%, var(--line));
+      border: 1px solid var(--line);
       border-radius: var(--radius-md);
-      background: color-mix(in srgb, var(--sage-deep) 3%, var(--paper-card));
+      background: var(--paper);
       padding: .6rem .85rem;
       font-size: .82rem;
       color: var(--ink);
@@ -408,7 +407,7 @@
     .mock-cta {
       margin-top: 1.15rem;
       padding-top: 1.05rem;
-      border-top: 1px dashed color-mix(in srgb, var(--sage-deep) 12%, var(--line));
+      border-top: 1px dashed var(--line);
     }
     .mock-cta span {
       display: flex;
@@ -427,8 +426,8 @@
       align-items: center;
       justify-content: center;
       gap: .4rem;
-      border-top: 1px solid color-mix(in srgb, var(--sage-deep) 10%, var(--line));
-      background: color-mix(in srgb, var(--sage-deep) 5%, var(--paper));
+      border-top: 1px solid var(--line);
+      background: var(--paper);
       padding: .7rem 1.15rem;
       font-size: .68rem;
       letter-spacing: .14em;
@@ -438,8 +437,8 @@
 
     /* —— Practice strip —— */
     .strip {
-      border-block: 1px solid color-mix(in srgb, var(--sage-deep) 16%, var(--line));
-      background: color-mix(in srgb, var(--sage-deep) 7%, var(--paper-deep));
+      border-block: 1px solid var(--line);
+      background: var(--paper-deep);
       padding: 1.5rem 0;
     }
     .strip-inner {
@@ -453,7 +452,7 @@
       font-size: .72rem;
       letter-spacing: .16em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--sage-deep) 65%, var(--ink-mute));
+      color: var(--ink-mute);
     }
     .strip ul {
       list-style: none;
@@ -478,7 +477,7 @@
       width: 3px;
       height: 3px;
       border-radius: 999px;
-      background: color-mix(in srgb, var(--sage-deep) 55%, var(--clay));
+      background: var(--clay);
       margin-inline: .75rem;
       vertical-align: middle;
       opacity: .75;
@@ -489,7 +488,7 @@
     h2 {
       margin: .9rem 0 0;
       font-family: var(--display);
-      font-weight: 300;
+      font-weight: 400;
       font-size: clamp(1.85rem, 5.5vw, 2.9rem);
       line-height: 1.12;
     }
@@ -519,7 +518,7 @@
       top: 0;
       height: 1px;
       width: 100%;
-      background: color-mix(in srgb, var(--sage-deep) 18%, var(--line));
+      background: var(--line);
     }
     .step-meta { display: flex; align-items: center; gap: .7rem; }
     .step-num {
@@ -528,7 +527,7 @@
       border-radius: 999px;
       border: 1px solid var(--sage-deep);
       color: var(--sage-deep);
-      background: color-mix(in srgb, var(--sage-deep) 8%, white);
+      background: var(--paper-card);
       font-size: .72rem;
       font-weight: 500;
       display: grid;
@@ -549,7 +548,7 @@
       margin: 1.05rem 0 0;
       font-family: var(--display);
       font-size: 1.45rem;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.25;
     }
     .steps p {
@@ -561,8 +560,8 @@
 
     /* —— Features —— */
     .features-band {
-      border-block: 1px solid color-mix(in srgb, var(--sage-deep) 16%, var(--line));
-      background: color-mix(in srgb, var(--sage-deep) 6%, var(--paper));
+      border-block: 1px solid var(--line);
+      background: var(--paper-deep);
     }
     .features-head {
       display: flex;
@@ -585,10 +584,10 @@
       display: grid;
       grid-template-columns: 1fr;
       gap: 1px;
-      border: 1px solid color-mix(in srgb, var(--sage-deep) 14%, var(--line));
+      border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      background: color-mix(in srgb, var(--sage-deep) 14%, var(--line));
+      background: var(--line);
     }
     .feat-grid li { background: var(--paper-card); padding: 1.5rem; }
     .feat-icon {
@@ -597,21 +596,22 @@
       border-radius: 999px;
       display: grid;
       place-items: center;
-    }
-    .feat-grid li:nth-child(odd) .feat-icon {
       background: color-mix(in srgb, var(--clay-soft) 75%, white);
       color: var(--clay-deep);
     }
-    .feat-grid li:nth-child(even) .feat-icon {
-      background: color-mix(in srgb, var(--sage-deep) 12%, white);
+    /* One intentional sage accent among feature icons */
+    .feat-grid li:nth-child(2) .feat-icon,
+    .feat-grid li:nth-child(5) .feat-icon {
+      background: var(--paper-card);
       color: var(--sage-deep);
+      box-shadow: inset 0 0 0 1px var(--line-strong);
     }
     .feat-icon svg { width: 1.15rem; height: 1.15rem; stroke-width: 1.6; }
     .feat-grid h3 {
       margin: 1.05rem 0 0;
       font-family: var(--display);
       font-size: 1.3rem;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1.25;
     }
     .feat-grid p {
@@ -634,7 +634,7 @@
       display: flex;
       flex-direction: column;
       background: var(--paper-card);
-      border: 1px solid color-mix(in srgb, var(--sage-deep) 12%, var(--line));
+      border: 1px solid var(--line);
       border-radius: var(--radius-lg);
       padding: 1.5rem;
       box-shadow: var(--shadow-card);
@@ -656,8 +656,8 @@
       box-shadow: var(--shadow-hover);
       transform: none;
     }
-    .plan-sage-accent {
-      border-top: 3px solid color-mix(in srgb, var(--sage-deep) 55%, var(--paper));
+    .plan-clay-accent {
+      border-top: 3px solid color-mix(in srgb, var(--clay) 70%, var(--paper));
     }
     .badge {
       position: absolute;
@@ -677,7 +677,7 @@
       margin: 0;
       font-family: var(--display);
       font-size: 1.45rem;
-      font-weight: 400;
+      font-weight: 500;
       line-height: 1;
     }
     .plan .summary {
@@ -690,7 +690,7 @@
     .price {
       margin-top: 1.05rem;
       font-family: var(--display);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 2.65rem;
       line-height: 1;
       color: var(--ink);
@@ -711,7 +711,7 @@
     }
     .price-block .lead {
       font-family: var(--display);
-      font-weight: 300;
+      font-weight: 400;
       font-size: 1.85rem;
       line-height: 1.1;
       color: var(--ink);
@@ -725,7 +725,7 @@
       list-style: none;
       margin: 1.25rem 0 0;
       padding: 1.25rem 0 0;
-      border-top: 1px dashed color-mix(in srgb, var(--sage-deep) 12%, var(--line));
+      border-top: 1px dashed var(--line);
       flex: 1;
     }
     .plan li {
@@ -809,8 +809,8 @@
 
     /* —— Footer —— */
     footer {
-      border-top: 1px solid color-mix(in srgb, var(--sage-deep) 16%, var(--line));
-      background: color-mix(in srgb, var(--sage-deep) 5%, var(--paper));
+      border-top: 1px solid var(--line);
+      background: var(--paper-deep);
       padding: 2.5rem 0;
     }
     .footer-grid {
@@ -836,7 +836,7 @@
       font-size: .72rem;
       letter-spacing: .14em;
       text-transform: uppercase;
-      color: color-mix(in srgb, var(--sage-deep) 55%, var(--ink-mute));
+      color: var(--ink-mute);
       font-family: var(--sans);
       font-weight: 500;
     }
@@ -854,7 +854,7 @@
     .footer-bottom {
       margin-top: 2rem;
       padding-top: 1.25rem;
-      border-top: 1px dashed color-mix(in srgb, var(--sage-deep) 14%, var(--line));
+      border-top: 1px dashed var(--line);
       display: flex;
       flex-wrap: wrap;
       gap: .75rem;
@@ -1092,7 +1092,7 @@
       <h2>Priced for a private practice, not a startup</h2>
       <p class="section-lede">Start free and stay free until your intake outgrows it. No setup fees, no per-client charges, cancel whenever.</p>
       <div class="pricing-grid">
-        <article class="plan plan-sage-accent">
+        <article class="plan plan-clay-accent">
           <h3>Free</h3>
           <p class="summary">For solo clinicians testing the waters.</p>
           <p class="price">$0 <span>/mo</span></p>
@@ -1129,7 +1129,7 @@
           </ul>
           <a class="btn btn-sage" href="mailto:support@hellocircleco.com?subject=Circle%20%E2%80%94%20Growth%20plan">Choose Growth</a>
         </article>
-        <article class="plan plan-sage-accent">
+        <article class="plan plan-clay-accent">
           <h3>Group</h3>
           <p class="summary">For multi-clinician practices and clinics.</p>
           <div class="price-block">
